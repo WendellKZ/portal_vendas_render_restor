@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Simulador · Portal de Vendas{% endblock %}
+{% block content %}
+<div class="card">
+  <h3>Simulador Preço/Margem</h3>
+  <div class="row gap">
+    <label>Tabela</label><input id="simTabela" value="Padrão" class="w120">
+    <label>SKU</label><input id="simSKU" value="SKU-001" class="w120">
+    <label>Qtd</label><input id="simQtd" value="5" type="number" class="w90">
+    <button class="btn" onclick="Pages.simular()">Calcular</button>
+  </div>
+  <pre id="simOut" class="prebox"></pre>
+  <div class="muted" id="simHint"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block page %}itens{% endblock %}
+{% block content %}
+<section class="card">
+  <div class="card-title">Itens mais vendidos</div>
+  <div class="toolbar">
+    <label>De <input type="date" id="i-de"></label>
+    <label>Até <input type="date" id="i-ate"></label>
+    <label>Top <input type="number" id="i-top" min="1" value="20"></label>
+    <button id="btnBuscarItens" class="btn">Buscar</button>
+    <div class="spacer"></div>
+    <button id="btnCsvItens" class="btn ghost">CSV</button>
+    <button id="btnXlsxItens" class="btn ghost">XLSX</button>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <table class="table" id="tbl-itens">
+        <thead>
+          <tr>
+            <th>SKU</th><th>Descrição</th><th>Qtd</th><th>Valor</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div>
+      <canvas id="chart-itens" height="200"></canvas>
+    </div>
+  </div>
+</section>
+{% endblock %}

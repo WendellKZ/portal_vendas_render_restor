@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}MTD / YTD · Portal de Vendas{% endblock %}
+{% block content %}
+<div class="card">
+  <h3>Comparativo MTD / YTD</h3>
+  <div class="row gap">
+    <button class="btn" onclick="Pages.loadMTDYTD()">Carregar</button>
+  </div>
+  <canvas id="chartMTD" height="140"></canvas>
+  <canvas id="chartYTD" height="140" style="margin-top:16px"></canvas>
+  <div class="muted" id="mtdytdHint"></div>
+</div>
+{% endblock %}

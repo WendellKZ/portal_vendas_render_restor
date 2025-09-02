@@ -1,0 +1,37 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br" data-theme="light">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portal Vendas</title>
+  <link rel="stylesheet" href="{% static 'portal/app.css' %}">
+  <!-- Chart.js para os gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body data-page="{% block page %}{% endblock %}">
+  <nav class="topbar">
+    <div class="brand">Portal Vendas</div>
+    <ul class="menu">
+      <li><a href="/app/">Dashboard</a></li>
+      <li><a href="/app/itens/">Itens</a></li>
+      <li><a href="/app/resumo/">Resumo</a></li>
+      <li><a href="/app/jobs/">Jobs</a></li>  <!-- novo -->
+    </ul>
+    <div class="session">
+      <span id="badgeAuth" class="badge">deslogado</span>
+      <a href="/app/sair/" class="logout">Sair</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">© Portal Vendas</footer>
+
+  <script src="{% static 'portal/app.js' %}"></script>
+</body>
+</html>

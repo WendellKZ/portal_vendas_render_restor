@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block page %}resumo{% endblock %}
+{% block content %}
+<section class="card">
+  <div class="card-title">Resumo de vendas</div>
+  <div class="toolbar">
+    <label>De <input type="date" id="r-de"></label>
+    <label>Até <input type="date" id="r-ate"></label>
+    <button id="btnBuscarResumo" class="btn">Buscar</button>
+    <div class="spacer"></div>
+    <button id="btnCsvResumo" class="btn ghost">CSV</button>
+    <button id="btnXlsxResumo" class="btn ghost">XLSX</button>
+    <button id="btnPdfResumo" class="btn ghost">PDF</button>
+  </div>
+
+  <div class="resume-cards">
+    <div class="mini stat">
+      <div class="mini-title">Pedidos</div>
+      <div class="mini-value" id="r-qtd">-</div>
+    </div>
+    <div class="mini stat">
+      <div class="mini-title">Total vendido</div>
+      <div class="mini-value" id="r-total">-</div>
+    </div>
+    <div class="mini stat">
+      <div class="mini-title">Ticket médio</div>
+      <div class="mini-value" id="r-ticket">-</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <table class="table" id="tbl-resumo">
+        <thead>
+          <tr>
+            <th>Cliente</th><th>Pedidos</th><th>Total</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div>
+      <canvas id="chart-resumo" height="220"></canvas>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Heatmap UF · Portal de Vendas{% endblock %}
+{% block content %}
+<div class="card">
+  <h3>Vendas por UF</h3>
+  <div class="row gap">
+    <input id="ufDe" type="date">
+    <input id="ufAte" type="date">
+    <button class="btn" onclick="Pages.loadHeatmapUF()">Atualizar</button>
+  </div>
+  <canvas id="chartUF" height="180"></canvas>
+  <div class="muted">Exibe um gráfico de barras por UF (substitui o mapa até ativarmos o módulo de mapa).</div>
+</div>
+{% endblock %}
