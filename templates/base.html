@@ -1,7 +1,9 @@
 {% load static %}
 <!doctype html>
 <html lang="pt-br" data-theme="light">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+  {% load static %}
+<link rel="stylesheet" href="{% static 'css/theme.css' %}">
+
 
 <head>
   <meta charset="utf-8" />
