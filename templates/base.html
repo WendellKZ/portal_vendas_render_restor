@@ -2,15 +2,22 @@
 <!doctype html>
 <html lang="pt-br" data-theme="light">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Portal Vendas</title>
-  <link rel="icon" href="{% static 'favicon.png' %}">
-  <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Portal Vendas{% endblock %}</title>
+
+  <!-- Favicon e estilos (Django static) -->
+  <link rel="icon" href="{% static 'portal/favicon.png' %}">
+  <link rel="stylesheet" href="{% static 'portal/theme.css' %}">
   <link rel="stylesheet" href="{% static 'portal/app.css' %}">
+
+  <!-- Chart.js para os gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body data-page="{% block page %}{% endblock %}">
   {% block content %}{% endblock %}
+
+  <!-- JS do portal (se existir) -->
+  <script src="{% static 'portal/app.js' %}"></script>
 </body>
 </html>
