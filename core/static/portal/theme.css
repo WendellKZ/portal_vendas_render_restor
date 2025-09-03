@@ -1,20 +1,18 @@
 :root{
-  --bg: #0b1220;
-  --card: #121a2b;
-  --text: #e8eefc;
-  --muted: #9fb3d9;
-  --accent: #4f9cff;
-  --accent-2: #00c2a8;
+  --pv-bg:#0f172a;
+  --pv-card:#111827;
+  --pv-text:#e5e7eb;
+  --pv-muted:#94a3b8;
+  --pv-primary:#f97316;
+  --pv-primary-600:#ea580c;
+  --pv-ring:#fb923c;
 }
-*{ box-sizing: border-box; }
-html, body{ margin:0; padding:0; background:var(--bg); color:var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, 'Apple Color Emoji','Segoe UI Emoji'; }
-a{ color: var(--accent); text-decoration:none; }
-.container{ max-width: 1200px; margin: 0 auto; padding: 16px; }
-.card{ background: var(--card); border-radius: 14px; padding: 16px; box-shadow: 0 8px 30px rgba(0,0,0,.25); }
-.kpis{ display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-block: 12px; }
-.kpi h3{ margin:0; font-size: 13px; color: var(--muted); }
-.kpi .v{ font-size: 22px; font-weight: 700; }
-.nav{ display:flex; gap:8px; padding:8px; border-radius:10px; background:rgba(255,255,255,.04); margin: 8px 0 16px; }
-.nav a{ padding:8px 12px; border-radius:8px; }
-.nav a.active, .nav a:hover{ background: rgba(79,156,255,.15); }
-footer{ color:var(--muted); font-size: 12px; opacity:.8; text-align:center; padding: 24px 0; }
+html,body{background:var(--pv-bg);color:var(--pv-text);}
+a{color:var(--pv-primary);text-decoration:none}
+a:hover{color:var(--pv-primary-600);}
+.pv-card{background:var(--pv-card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.2),0 8px 20px rgba(0,0,0,.35);}
+.pv-btn{background:linear-gradient(135deg,var(--pv-primary),var(--pv-primary-600));color:white;border:none;border-radius:12px;padding:10px 14px;cursor:pointer;}
+.pv-btn:focus{outline:2px solid var(--pv-ring);outline-offset:2px}
+.pv-grid{display:grid;gap:16px}
+@media(min-width:768px){.pv-grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(min-width:1024px){.pv-grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr));}}
