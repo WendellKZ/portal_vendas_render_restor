@@ -1,23 +1,20 @@
 {% extends "base.html" %}
-
 {% block content %}
 <h1>Dashboard</h1>
 
 {% if not request.user.is_authenticated %}
-  <!-- Login inline: só aparece quando NÃO autenticado -->
-  <section class="pv-card" style="max-width:420px">
+  <section class="pv-card pv-login">
     <h2>Login</h2>
     <form method="post" action="{% url 'portal:login' %}">
       {% csrf_token %}
-      <div class="pv-field">
-        <label>Usuário</label>
-        <input type="text" name="username" placeholder="admin" required>
-      </div>
-      <div class="pv-field">
-        <label>Senha</label>
-        <input type="password" name="password" placeholder="••••••••" required>
-      </div>
-      <button type="submit">Entrar</button>
+      <label class="pv-label">Usuário</label>
+      <input class="pv-input" type="text" name="username" placeholder="admin" autocomplete="username" />
+
+      <label class="pv-label">Senha</label>
+      <input class="pv-input" type="password" name="password" placeholder="admin123" autocomplete="current-password" />
+
+      <button class="pv-btn" type="submit">Entrar</button>
+
       {% if messages %}
         <div class="pv-msg">
           {% for m in messages %}{{ m }}{% if not forloop.last %}<br>{% endif %}{% endfor %}
@@ -27,24 +24,23 @@
   </section>
 {% endif %}
 
-<!-- Blocos principais do dashboard -->
-<div class="pv-grid">
-  <section class="pv-card">
+<section class="pv-grid">
+  <div class="pv-card">
     <h3>Pedidos (período)</h3>
     <div>—</div>
-  </section>
-  <section class="pv-card">
+  </div>
+
+  <div class="pv-card">
     <h3>Total Vendido</h3>
     <div>—</div>
-  </section>
-</div>
+  </div>
+</section>
 
 <section class="pv-card">
   <h3>Atalhos</h3>
   <p>
-    <a href="{% url 'portal:itens' %}">Itens mais vendidos</a>
-    &nbsp;|&nbsp;
-    <a href="{% url 'portal:resumo' %}">Resumo de vendas</a>
+    <a class="pv-link" href="{% url 'portal:itens' %}">Itens mais vendidos</a> |
+    <a class="pv-link" href="{% url 'portal:resumo' %}">Resumo de vendas</a>
   </p>
 </section>
 {% endblock %}

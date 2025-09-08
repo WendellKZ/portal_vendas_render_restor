@@ -1,13 +1,15 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
 
-    # API
+    # API do seu app
     path("api/", include("api.urls")),
-    path("api-auth/", include("rest_framework.urls")),  # login UI do DRF
 
-    # Front
+    # Login do Django REST Framework (útil para testar APIs pelo browser)
+    path("api-auth/", include("rest_framework.urls")),
+
+    # Front do portal
     path("app/", include(("core.urls_front", "portal"), namespace="portal")),
 ]
