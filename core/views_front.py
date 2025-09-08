@@ -1,22 +1,20 @@
-from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 
 def dashboard_view(request):
-    # Mostra o login apenas se não estiver autenticado
-    return render(request, "dashboard.html", {})
+    return render(request, "dashboard.html")
 
 def login_view(request):
     if request.method == "POST":
-        username = request.POST.get("username") or ""
-        password = request.POST.get("password") or ""
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
+        user = authenticate(request,
+                            username=request.POST.get("username"),
+                            password=request.POST.get("password"))
+        if user:
             login(request, user)
             return redirect("portal:dashboard")
         messages.error(request, "Usuário ou senha inválidos.")
-    # Volta ao dashboard (onde o formulário aparece quando não autenticado)
     return redirect("portal:dashboard")
 
 def logout_view(request):
@@ -25,8 +23,8 @@ def logout_view(request):
 
 @login_required(login_url="/app/")
 def itens_view(request):
-    return render(request, "itens.html", {})
+    return render(request, "itens.html")
 
 @login_required(login_url="/app/")
 def resumo_view(request):
-    return render(request, "resumo.html", {})
+    return render(request, "resumo.html")

@@ -43,4 +43,12 @@
     <a class="pv-link" href="{% url 'portal:resumo' %}">Resumo de vendas</a>
   </p>
 </section>
+{% extends "base.html" %}
+{% block content %}
+<h1>Dashboard</h1>
+{% if not request.user.is_authenticated %}
+  <!-- form de login aqui -->
+{% endif %}
+<!-- restantes cartões/atalhos -->
 {% endblock %}
+

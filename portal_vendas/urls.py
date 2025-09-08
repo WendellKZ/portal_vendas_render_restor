@@ -1,15 +1,11 @@
-from django.contrib import admin
-from django.urls import include, path
+from django.urls import path
+from . import views_front
 
+app_name = "portal"
 urlpatterns = [
-    path("admin/", admin.site.urls),
-
-    # API do seu app
-    path("api/", include("api.urls")),
-
-    # Login do Django REST Framework (útil para testar APIs pelo browser)
-    path("api-auth/", include("rest_framework.urls")),
-
-    # Front do portal
-    path("app/", include(("core.urls_front", "portal"), namespace="portal")),
+    path("", views_front.dashboard_view, name="dashboard"),
+    path("login/", views_front.login_view, name="login"),
+    path("logout/", views_front.logout_view, name="logout"),
+    path("itens/", views_front.itens_view, name="itens"),
+    path("resumo/", views_front.resumo_view, name="resumo"),
 ]
