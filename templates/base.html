@@ -1,38 +1,34 @@
 {% load static %}
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-br" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portal de Vendas</title>
+  <title>{% block title %}Portal Vendas{% endblock %}</title>
 
-  <!-- Ícone (opcional) -->
   <link rel="icon" href="{% static 'portal/favicon.png' %}">
-
-  <!-- Estilos -->
   <link rel="stylesheet" href="{% static 'portal/theme.css' %}">
   <link rel="stylesheet" href="{% static 'portal/app.css' %}">
 
-  <!-- Charts -->
+  <!-- Gráficos -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body data-page="{% block page %}{% endblock %}">
   <header class="pv-header">
-    <div class="pv-container">
-      <strong>Portal de Vendas</strong>
-      <nav class="pv-nav">
-        {% if request.user.is_authenticated %}
-          <span>Olá, {{ request.user.username }}</span>
-          <a href="{% url 'portal:logout' %}" class="pv-link">Sair</a>
-        {% else %}
-          <a href="{% url 'portal:dashboard' %}" class="pv-link">Entrar</a>
-        {% endif %}
-      </nav>
-    </div>
+    <h1>Portal de Vendas</h1>
+    <nav class="pv-nav">
+      <a href="{% url 'portal:dashboard' %}">Dashboard</a>
+      <a href="{% url 'portal:itens' %}">Itens</a>
+      <a href="{% url 'portal:resumo' %}">Resumo</a>
+    </nav>
   </header>
 
   <main class="pv-container">
     {% block content %}{% endblock %}
   </main>
+
+  <footer class="pv-footer">
+    <small>Portal Vendas</small>
+  </footer>
 </body>
 </html>

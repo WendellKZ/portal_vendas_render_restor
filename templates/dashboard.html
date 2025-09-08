@@ -1,38 +1,28 @@
 {% extends "base.html" %}
+{% block title %}Dashboard · Portal Vendas{% endblock %}
+{% block page %}dashboard{% endblock %}
+
 {% block content %}
 <h1>Dashboard</h1>
 
 {% if not request.user.is_authenticated %}
-  <section class="pv-card pv-login">
-    <h2>Login</h2>
-    <form method="post" action="{% url 'portal:login' %}">
-      {% csrf_token %}
-      <label class="pv-label">Usuário</label>
-      <input class="pv-input" type="text" name="username" placeholder="admin" autocomplete="username" />
-
-      <label class="pv-label">Senha</label>
-      <input class="pv-input" type="password" name="password" placeholder="admin123" autocomplete="current-password" />
-
-      <button class="pv-btn" type="submit">Entrar</button>
-
-      {% if messages %}
-        <div class="pv-msg">
-          {% for m in messages %}{{ m }}{% if not forloop.last %}<br>{% endif %}{% endfor %}
-        </div>
-      {% endif %}
-    </form>
-  </section>
+  <!-- Login simples -->
+  <form method="post" action="{% url 'portal:login' %}" class="pv-card pv-login">
+    {% csrf_token %}
+    <input type="text"   name="username" placeholder="admin" required>
+    <input type="password" name="password" placeholder="admin123" required>
+    <button type="submit">Entrar</button>
+  </form>
 {% endif %}
 
-<section class="pv-grid">
+<section class="pv-cards">
   <div class="pv-card">
     <h3>Pedidos (período)</h3>
-    <div>—</div>
+    <p>—</p>
   </div>
-
   <div class="pv-card">
     <h3>Total Vendido</h3>
-    <div>—</div>
+    <p>—</p>
   </div>
 </section>
 
@@ -43,12 +33,4 @@
     <a class="pv-link" href="{% url 'portal:resumo' %}">Resumo de vendas</a>
   </p>
 </section>
-{% extends "base.html" %}
-{% block content %}
-<h1>Dashboard</h1>
-{% if not request.user.is_authenticated %}
-  <!-- form de login aqui -->
-{% endif %}
-<!-- restantes cartões/atalhos -->
 {% endblock %}
-
