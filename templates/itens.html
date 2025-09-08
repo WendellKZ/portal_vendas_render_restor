@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Itens mais vendidos{% endblock %}
+
+{% block content %}
+  <section class="pv-card">
+    <h3>Itens mais vendidos</h3>
+
+    {% if not request.user.is_authenticated %}
+      <!-- formulário de login simples -->
+      <form method="post" action="{% url 'portal:login' %}">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="usuário" value="admin">
+        <input type="password" name="password" placeholder="senha">
+        <button type="submit">Entrar</button>
+      </form>
+      <p class="muted">Entre para visualizar os itens.</p>
+    {% else %}
+      <p class="muted">Em breve: tabela com os itens mais vendidos e filtros.</p>
+    {% endif %}
+  </section>
+{% endblock %}

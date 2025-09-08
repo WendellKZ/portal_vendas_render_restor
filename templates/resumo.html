@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Resumo de vendas{% endblock %}
+
+{% block content %}
+  <section class="pv-card">
+    <h3>Resumo de vendas</h3>
+
+    {% if not request.user.is_authenticated %}
+      <!-- formulário de login simples -->
+      <form method="post" action="{% url 'portal:login' %}">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="usuário" value="admin">
+        <input type="password" name="password" placeholder="senha">
+        <button type="submit">Entrar</button>
+      </form>
+      <p class="muted">Entre para visualizar o resumo.</p>
+    {% else %}
+      <p class="muted">Em breve: KPIs, MTD/YTD, e gráficos.</p>
+    {% endif %}
+  </section>
+{% endblock %}
