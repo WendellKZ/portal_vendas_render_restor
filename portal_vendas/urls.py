@@ -1,11 +1,11 @@
-from django.urls import path
-from . import views_front
+from django.contrib import admin
+from django.urls import include, path
+from django.views.generic import RedirectView
 
-app_name = "portal"
 urlpatterns = [
-    path("", views_front.dashboard_view, name="dashboard"),
-    path("login/", views_front.login_view, name="login"),
-    path("logout/", views_front.logout_view, name="logout"),
-    path("itens/", views_front.itens_view, name="itens"),
-    path("resumo/", views_front.resumo_view, name="resumo"),
+    path("", RedirectView.as_view(url="/app/", permanent=False)),  # redireciona a raiz para /app/
+    path("admin/", admin.site.urls),
+    path("api/", include("api.urls")),
+    path("api-auth/", include("rest_framework.urls")),
+    path("app/", include(("core.urls_front", "portal"), namespace="portal")),
 ]
