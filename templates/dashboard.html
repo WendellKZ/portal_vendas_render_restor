@@ -1,34 +1,50 @@
 {% extends "base.html" %}
-{% block title %}Dashboard — Portal Vendas{% endblock %}
 
 {% block content %}
-<section id="login-card" class="card">
-  <h2>Login</h2>
-  <div class="row">
-    <input id="login-user" class="input" placeholder="usuário" value="admin" />
-    <input id="login-pass" class="input" type="password" placeholder="senha" />
-    <button id="btn-login" class="btn-primary">Entrar</button>
-  </div>
-  <small id="login-msg" class="muted"></small>
-</section>
+<h1>Dashboard</h1>
 
-<section class="grid-2">
-  <div class="card">
+{% if not request.user.is_authenticated %}
+  <!-- Login inline: só aparece quando NÃO autenticado -->
+  <section class="pv-card" style="max-width:420px">
+    <h2>Login</h2>
+    <form method="post" action="{% url 'portal:login' %}">
+      {% csrf_token %}
+      <div class="pv-field">
+        <label>Usuário</label>
+        <input type="text" name="username" placeholder="admin" required>
+      </div>
+      <div class="pv-field">
+        <label>Senha</label>
+        <input type="password" name="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit">Entrar</button>
+      {% if messages %}
+        <div class="pv-msg">
+          {% for m in messages %}{{ m }}{% if not forloop.last %}<br>{% endif %}{% endfor %}
+        </div>
+      {% endif %}
+    </form>
+  </section>
+{% endif %}
+
+<!-- Blocos principais do dashboard -->
+<div class="pv-grid">
+  <section class="pv-card">
     <h3>Pedidos (período)</h3>
-    <div id="kpi-pedidos" class="kpi">—</div>
-  </div>
-  <div class="card">
+    <div>—</div>
+  </section>
+  <section class="pv-card">
     <h3>Total Vendido</h3>
-    <div id="kpi-total" class="kpi">—</div>
-  </div>
-</section>
+    <div>—</div>
+  </section>
+</div>
 
-<section class="card">
+<section class="pv-card">
   <h3>Atalhos</h3>
-  <div class="row">
-    <a class="btn-secondary" href="/app/itens/">Itens mais vendidos</a>
-    <a class="btn-secondary" href="/app/resumo/">Resumo de vendas</a>
-  </div>
+  <p>
+    <a href="{% url 'portal:itens' %}">Itens mais vendidos</a>
+    &nbsp;|&nbsp;
+    <a href="{% url 'portal:resumo' %}">Resumo de vendas</a>
+  </p>
 </section>
 {% endblock %}
-
